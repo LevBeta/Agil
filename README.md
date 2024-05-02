@@ -1,4 +1,4 @@
-# Agil: High-Performance Trading Infrastructure
+# Agil: High-Performance Trading Base
 
 Agil is a high-performance trading infrastructure designed for high-frequency (HFT) and medium-frequency (MFT) trading. It prioritizes speed, modularity, and user-friendliness to excel in the fast-paced trading landscape. Key features include:
 
