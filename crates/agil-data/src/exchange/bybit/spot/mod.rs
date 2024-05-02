@@ -13,11 +13,11 @@ impl ExchangeServer for BybitSpotServer {
     const ID: ExchangeId = ExchangeId::BybitSpot;
 
     fn websocket_url() -> Url {
-        Url {
-            domain: String::from("stream.bybit.com"),
-            path: String::from("/v5/public/spot"),
-            port: Some(443),
-            protocol: Some(Protocol::WSS),
-        }
+        Url::new(
+            "stream.bybit.com",
+            "/v5/public/spot",
+            Some(443),
+            Some(Protocol::WSS),
+        )
     }
 }

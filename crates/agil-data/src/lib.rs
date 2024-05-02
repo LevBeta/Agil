@@ -8,7 +8,7 @@ use crate::{
 };
 use agil_integration::account::ApiKey;
 use agil_integration::websocket::fastws::FastWebSocket;
-use agil_integration::websocket::{message::WebSocketParser, ExchangeStream, WsStream};
+use agil_integration::websocket::{message::WebSocketParserExchangeStream, WsStream};
 use futures::Stream;
 use trait_variant::make;
 /// Standard implementation to subscribe to a WebSocket

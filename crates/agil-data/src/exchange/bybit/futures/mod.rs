@@ -13,11 +13,11 @@ impl ExchangeServer for BybitFuturesServer {
     const ID: ExchangeId = ExchangeId::BybitFutures;
 
     fn websocket_url() -> Url {
-        Url {
-            domain: String::from("stream.bybit.com"),
-            path: String::from("/v5/public/linear"),
-            port: Some(443),
-            protocol: Some(Protocol::WSS),
-        }
+        Url::new(
+            "stream.bybit.com",
+            "/v5/public/linear",
+            Some(443),
+            Some(Protocol::WSS),
+        )
     }
 }

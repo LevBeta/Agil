@@ -14,6 +14,8 @@ Agil originated as a fork of [Barter-Data](https://github.com/barter-rs/barter-d
 
 Currently there is some parts of the code that already have a tag of "TODO:", so it's easier to find someparts
 
+* **HIGH IMPORTANCE**: Ins't running because of things that i moved/deleted last time and didn't noticed, needs to be checked into
+
 * Remove by complete the tokio-tungsnite codes, and dependecies, moving the fast-websockets parts into their respective and better locations.
 
 * **High importance**: Start working on a better solution/ rewrite some parts of the private feed implementation 

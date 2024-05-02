@@ -45,7 +45,7 @@ impl Signer for BybitSigner {
 
         let val = format!("GET/realtime{}", expires);
         type HmacSha256 = hmac::Hmac<sha2::Sha256>;
-        let mut hmac = HmacSha256::new_from_slice(&data.secret_key.as_bytes()).unwrap();
+        //let mut hmac = HmacSha256::new_from_slice(&data.secret_key.as_bytes()).unwrap();
         //let signature = hmac::Key::new(hmac::HMAC_SHA256, &data.secret_key.as_bytes());
         //let sig_bytes = hmac::sign(&signature, val.as_bytes());
 
