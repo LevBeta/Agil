@@ -1,0 +1,36 @@
+[package]
+name = "agil_data"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+agil_integration = { path="../agil-integration" }
+chrono = "0.4.37"
+criterion = { version = "0.5.1", features = ["async_futures"] }
+fastwebsockets = "0.7.1"
+futures = "0.3.30"
+hex = "0.4.3"
+hmac = "0.12.1"
+minstant = "0.1.7"
+serde = { version = "1.0.197", features = ["derive"] }
+serde_json = "1.0.115"
+sha2 = "0.10.8"
+thiserror = "1.0.58"
+tokio = { version = "1.37.0", features = ["rt-multi-thread", "sync"] }
+tokio-tungstenite = {version="0.21.0", features= ["rustls-tls-webpki-roots"]}
+trait-variant = "0.1.2"
+
+[dev-dependencies]
+tokio = { version = "1.37.0", features = ["macros"]}
+criterion = { version = "0.5.1", features=["html_reports"]}
+simd-json = "0.13.9"
+
+#[[bench]]
+#name = "bybit_de"
+#harness = false
+
+[[bench]]
+name = "transformer"
+harness = false

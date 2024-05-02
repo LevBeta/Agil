@@ -1,7 +1,14 @@
 use tokio::net::TcpStream;
 use tokio_tungstenite::MaybeTlsStream;
+
+/// Support for faster WebSockets using FastWebSockets
+/// <https://docs.rs/fastwebsockets/latest/fastwebsockets/index.html>
+pub mod fastws;
+
+/// Errors related to [`WebSocket`] and protocol implementatios
 pub mod error;
 
+/// Utilies for [`WsMessage`]
 pub mod message;
 
 /// Convenient type alias for a tungstenite `WebSocketStream`.

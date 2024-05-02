@@ -1,5 +1,4 @@
-use crate::websocket::{error::WebSocketError, WebSocket, WsError, WsMessage};
-use futures::Stream;
+use crate::websocket::{error::WebSocketError, WsError, WsMessage};
 use serde::de::DeserializeOwned;
 use tokio_tungstenite::tungstenite::protocol::{frame::Frame, CloseFrame};
 
@@ -12,7 +11,7 @@ where
 {
     Some(
         serde_json::from_str::<ExchangeMessage>(&payload)
-            .map_err(|error| WebSocketError::Deserialise { error, payload }),
+            .map_err(|error| WebSocketError::Deserialize { error, payload }),
     )
 }
 
@@ -25,7 +24,7 @@ where
 {
     Some(
         serde_json::from_slice::<ExchangeMessage>(&payload).map_err(|error| {
-            WebSocketError::Deserialise {
+            WebSocketError::Deserialize {
                 error,
                 payload: String::from_utf8(payload).unwrap_or_else(|x| x.to_string()),
             }
@@ -61,8 +60,8 @@ pub fn process_close_frame<ExchangeMessage>(
     Some(Err(WebSocketError::Terminated(close_frame)))
 }
 
+/// Stream parser that takes a Message and deserializes into a output
 pub trait StreamParser {
-    type Stream: Stream;
     type Message;
     type Error;
 
@@ -73,10 +72,10 @@ pub trait StreamParser {
         Output: DeserializeOwned;
 }
 
+/// Simple implementation to deserialize [`WsMessage`] into a given Output
 pub struct WebSocketParser;
 
 impl StreamParser for WebSocketParser {
-    type Stream = WebSocket;
     type Message = WsMessage;
     type Error = WsError;
 
