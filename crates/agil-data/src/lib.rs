@@ -8,7 +8,7 @@ use crate::{
 };
 use agil_integration::account::ApiKey;
 use agil_integration::websocket::fastws::FastWebSocket;
-use agil_integration::websocket::{message::WebSocketParserExchangeStream, WsStream};
+use agil_integration::websocket::{message::WebSocketParser, WsStream};
 use futures::Stream;
 use trait_variant::make;
 /// Standard implementation to subscribe to a WebSocket
@@ -48,12 +48,17 @@ where
     }
 }
 
-pub type ExchangeWsStream<Transformer> = ExchangeStream<Transformer, WebSocketParser, WsStream>;
+//pub type ExchangeWsStream<Transformer> = ExchangeStream<Transformer, WebSocketParser, WsStream>;
+
+pub struct ExchangeWsStream<Transformer> {
+    pub transformer: Transformer,
+    pub ws_stream: WebSocketParser,
+}
 
 #[make(Send)]
 pub trait MarketStream<Exchange, Kind, Key>
 where
-    Self: Stream<Item = Result<MarketEvent<Kind::Event>, AgilDataError>> + Send + Sized + Unpin,
+    //Self: Stream<Item = Result<MarketEvent<Kind::Event>, AgilDataError>> + Send + Sized,
     Exchange: Connector,
     Kind: SubKind,
     Key: ApiKey,
