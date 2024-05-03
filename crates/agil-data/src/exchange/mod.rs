@@ -5,10 +5,7 @@ use crate::{
     ExchangeTransformer, MarketStream,
 };
 use agil_integration::{
-    account::{ApiKey, Signer},
-    instrument::Instrument,
-    net::url::Url,
-    websocket::fastws::FastWsMessage,
+    account::ApiKey, instrument::Instrument, net::url::Url, websocket::fastws::FastWsMessage,
     Validator,
 };
 use serde::de::DeserializeOwned;
@@ -117,12 +114,5 @@ where
     Key: ApiKey,
 {
     type Stream: MarketStream<Self, Kind, Key>;
-}
-
-pub trait TransformerSelector<Kind>
-where
-    Self: Connector,
-    Kind: SubKind,
-{
     type Transformer: ExchangeTransformer<Self, Kind>;
 }

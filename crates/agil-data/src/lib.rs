@@ -8,9 +8,8 @@ use crate::{
 };
 use agil_integration::account::ApiKey;
 use agil_integration::websocket::fastws::FastWebSocket;
-use agil_integration::websocket::{message::WebSocketParser, WsStream};
-use futures::Stream;
 use trait_variant::make;
+
 /// Standard implementation to subscribe to a WebSocket
 pub mod subscription;
 
@@ -48,17 +47,11 @@ where
     }
 }
 
-//pub type ExchangeWsStream<Transformer> = ExchangeStream<Transformer, WebSocketParser, WsStream>;
-
-pub struct ExchangeWsStream<Transformer> {
-    pub transformer: Transformer,
-    pub ws_stream: WebSocketParser,
-}
+pub struct ExchangeWsStream;
 
 #[make(Send)]
 pub trait MarketStream<Exchange, Kind, Key>
 where
-    //Self: Stream<Item = Result<MarketEvent<Kind::Event>, AgilDataError>> + Send + Sized,
     Exchange: Connector,
     Kind: SubKind,
     Key: ApiKey,
@@ -71,12 +64,10 @@ where
         Subscription<Exchange, Kind>: Identifier<Exchange::Channel> + Identifier<Exchange::Market>;
 }
 
-impl<Exchange, Kind, Transformer, Key> MarketStream<Exchange, Kind, Key>
-    for ExchangeWsStream<Transformer>
+impl<Exchange, Kind, Key> MarketStream<Exchange, Kind, Key> for ExchangeWsStream
 where
     Exchange: Connector<Key = Key> + Send + Sync,
     Kind: SubKind + Send + Sync,
-    Transformer: ExchangeTransformer<Exchange, Kind> + Send,
     Kind::Event: Send,
     Key: ApiKey + Send + Sync,
 {
@@ -87,13 +78,6 @@ where
     where
         Subscription<Exchange, Kind>: Identifier<Exchange::Channel> + Identifier<Exchange::Market>,
     {
-        let mut websocket =
-            Exchange::Subscriber::subscribe::<Exchange, Kind, Key>(subscriptions, api_key).await?;
-
-        //let _ = websocket.read_frame().await;
-
-        //let mut transformer = Transformer::new();
-
-        Ok(websocket)
+        Exchange::Subscriber::subscribe::<Exchange, Kind, Key>(subscriptions, api_key).await
     }
 }

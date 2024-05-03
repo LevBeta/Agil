@@ -3,9 +3,6 @@ use crate::{
     Identifier, SubscriptionId,
 };
 
-/// A dummy trait to group both [`PublicExchangeSub`] and [`PrivateExchangeSub`]
-pub(crate) trait ExchangeSub {}
-
 /// Defines an exchange specific market and channel combination used by an exchange
 /// normally used for public endpoint that requires both
 /// ### Example
@@ -53,8 +50,6 @@ where
     }
 }
 
-impl<Channel, Market> ExchangeSub for PublicExchangeSub<Channel, Market> {}
-
 /// Defines an exchange specific channel used by an exchange
 /// normally used for private endpoit that requires only one
 /// ```json
@@ -88,5 +83,3 @@ where
         SubscriptionId::from(self.channel.as_ref())
     }
 }
-
-impl<Channel> ExchangeSub for PrivateExchangeSub<Channel> {}

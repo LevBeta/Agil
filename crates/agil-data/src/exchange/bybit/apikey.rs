@@ -1,5 +1,4 @@
 use agil_integration::account::{ApiKey, Signer};
-use std::time;
 
 #[derive(Clone, Debug)]
 pub struct BybitApiKey {
@@ -35,22 +34,21 @@ impl Signer for BybitSigner {
     type Output = (String, u64);
     type Error = std::io::Error;
 
-    fn sign(data: Self::Input) -> Result<Self::Output, Self::Error> {
-        let expires = (time::SystemTime::now()
-            .duration_since(time::UNIX_EPOCH)
-            .unwrap()
-            .as_secs()
-            + 10)
-            * 1000;
-
-        let val = format!("GET/realtime{}", expires);
-        type HmacSha256 = hmac::Hmac<sha2::Sha256>;
+    fn sign(_data: Self::Input) -> Result<Self::Output, Self::Error> {
+        todo!();
+        //let expires = (time::SystemTime::now()
+        //    .duration_since(time::UNIX_EPOCH)
+        //    .unwrap()
+        //    .as_secs()
+        //    + 10)
+        //    * 1000;
+        //let val = format!("GET/realtime{}", expires);
+        //type HmacSha256 = hmac::Hmac<sha2::Sha256>;
         //let mut hmac = HmacSha256::new_from_slice(&data.secret_key.as_bytes()).unwrap();
         //let signature = hmac::Key::new(hmac::HMAC_SHA256, &data.secret_key.as_bytes());
         //let sig_bytes = hmac::sign(&signature, val.as_bytes());
 
         //let signature_hex = hex::encode(sig_bytes.as_ref());
-        todo!()
         //Ok((signature_hex, expires))
     }
 }

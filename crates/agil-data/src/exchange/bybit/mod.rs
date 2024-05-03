@@ -6,7 +6,7 @@ use crate::{
             position::BybitPosition, subscription::BybitResponse, trade::BybitTrade,
         },
         subscription::PublicExchangeSub,
-        ExchangeServer, StreamSelector, TransformerSelector,
+        ExchangeServer, StreamSelector,
     },
     subscriber::{validator::FastWebSocketSubValidator, WebSocketSubscriber},
     subscription::{position::Positions, trade::PublicTrades},
@@ -136,17 +136,11 @@ impl<Server: ExchangeServer> Connector for Bybit<Server> {
 }
 
 impl<Server: ExchangeServer + Sync> StreamSelector<PublicTrades, BybitApiKey> for Bybit<Server> {
-    type Stream = ExchangeWsStream<StatelessTransformer<Self, PublicTrades, BybitTrade>>;
-}
-
-impl<Server: ExchangeServer + Sync> StreamSelector<Positions, BybitApiKey> for Bybit<Server> {
-    type Stream = ExchangeWsStream<StatelessTransformer<Self, Positions, BybitPosition>>;
-}
-
-impl<Server: ExchangeServer> TransformerSelector<PublicTrades> for Bybit<Server> {
+    type Stream = ExchangeWsStream;
     type Transformer = StatelessTransformer<Self, PublicTrades, BybitTrade>;
 }
 
-impl<Server: ExchangeServer> TransformerSelector<Positions> for Bybit<Server> {
+impl<Server: ExchangeServer + Sync> StreamSelector<Positions, BybitApiKey> for Bybit<Server> {
+    type Stream = ExchangeWsStream;
     type Transformer = StatelessTransformer<Self, Positions, BybitPosition>;
 }

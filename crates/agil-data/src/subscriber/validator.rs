@@ -54,10 +54,8 @@ impl SubscriptionValidator for FastWebSocketSubValidator {
                     break Err(AgilDataError::ValidationTimeout(timeout));
                 },
                 message = websocket.read_frame() => {
-                    println!("aqui");
                     match message {
                         Ok(response) => {
-                            //println!("{:?}", response);
                             match Self::Parser::parse::<Exchange::SubResponse>(Ok(response)) {
                                 Some(Ok(parsed_response)) => {
                                     match parsed_response.validate() {
@@ -67,8 +65,7 @@ impl SubscriptionValidator for FastWebSocketSubValidator {
                                         Err(_) => break Err(AgilDataError::SubscriptionValidation),
                                     }
                                 },
-                                Some(Err(agil_integration::websocket::error::WebSocketError::Deserialize { error, payload })) => {
-                                    println!("{:?}: {:?}", error, payload);
+                                Some(Err(agil_integration::websocket::error::WebSocketError::Deserialize { .. })) => {
                                     continue;
                                 },
                                 None => {

@@ -1,7 +1,6 @@
 use agil_data::{
-    exchange::bybit::{apikey::BybitApiKey, futures::BybitFutures},
-    stream::StreamBuilder,
-    subscription::{position::Positions, trade::PublicTrades},
+    exchange::bybit::futures::BybitFutures, stream::StreamBuilder,
+    subscription::trade::PublicTrades,
 };
 use agil_integration::instrument::{kind::InstrumentKind, Instrument};
 

@@ -1,7 +1,7 @@
 use crate::{
     error::AgilDataError,
     event::MarketEvent,
-    exchange::{Connector, StreamSelector, TransformerSelector},
+    exchange::{Connector, StreamSelector},
     stream::consume::consume,
     subscription::{SubKind, Subscription},
     ExchangeTransformer, Identifier,
@@ -44,19 +44,14 @@ where
     where
         SubIter: IntoIterator<Item = Sub>,
         Sub: Into<Subscription<Exchange, Kind>>,
-        Exchange: Connector
-            + StreamSelector<Kind, Key>
-            + TransformerSelector<Kind>
-            + Send
-            + Sync
-            + 'static,
+        Exchange: Connector + StreamSelector<Kind, Key> + Send + Sync + 'static,
         Key: ApiKey + Send + Sync + Clone + 'static,
         Kind: SubKind + Send + Sync + 'static,
         Subscription<Exchange, Kind>: Identifier<Exchange::Channel> + Identifier<Exchange::Market>,
         Kind::Event: Send,
-        <Exchange as TransformerSelector<Kind>>::Transformer: std::marker::Send,
+        <Exchange as StreamSelector<Kind, Key>>::Transformer: std::marker::Send,
     {
-        let mut subscriptions = subscriptions.into_iter().map(Sub::into).collect::<Vec<_>>();
+        let subscriptions = subscriptions.into_iter().map(Sub::into).collect::<Vec<_>>();
 
         let channel = self.tx.clone();
 
