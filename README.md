@@ -1,4 +1,6 @@
-# Agil: High-Performance Trading Base
+# Agil: High-Performance Trading Base [WIP FOR FIRST RELEASE]
+
+# DO NOT USE IT YET, READ THIS TWEET ABOUT IT: https://x.com/levbeta/status/1786453984921694617
 
 Agil is a high-performance trading base designed for high-frequency (HFT) and medium-frequency (MFT) trading. It prioritizes speed, modularity, and user-friendliness to excel in the fast-paced trading landscape. Key features include:
 
