@@ -17,9 +17,6 @@ Agil originated as a fork of [Barter-Data](https://github.com/barter-rs/barter-d
 Currently there is some parts of the code that already have a tag of "TODO:", so it's easier to find someparts
 
 * **HIGH IMPORTANCE**: (Since this happend kek, the lib file and the ExchangeWsStream can be the first to be lookped up and rewritten)
-* **HIGH IMPORTANCE**: The thing about this is the `TransformerSelector` is kinda overlaying with the `StreamSelector`, on the `StreamSelector`,
-we are passing things that aren't needed because we used it different from the original crate, and I still didn't rewrote it, so yeah, that should 
-be rewritten
 * Look into the shit of [`TransformerSelector`] which should be deleted, it was some tests that i had made before
 * move the fast-websockets parts into their respective and better locations.
 * Clean placeholder code, unused deps, move things to their correct locations, add docs etc.
