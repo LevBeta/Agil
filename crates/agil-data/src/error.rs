@@ -6,8 +6,6 @@ use thiserror::Error;
 pub enum AgilDataError {
     #[error("Websocket error: {0}")]
     WebSocketError(#[from] WebSocketError),
-    #[error("WebSocket error: {0}")]
-    WebSocket(#[from] tokio_tungstenite::tungstenite::Error),
     #[error("Websocket error")]
     WSERROR,
     #[error("Couldn't subscribe, validation timeout reached")]

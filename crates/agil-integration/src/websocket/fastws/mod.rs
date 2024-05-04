@@ -99,18 +99,9 @@ mod tests {
         let frame = Frame::text(Payload::BorrowedMut(&mut binding));
         ws.write_frame(frame).await.unwrap();
         loop {
-            //let msg = match ws.read_frame().await {
-            //    Ok(msg) => msg,
-            //    Err(e) => {
-            //        println!("{:?}", e);
-            //        break;
-            //    }
-            //};
-
             let msg = ws.read_frame().await;
 
             let x = FastWebSocketParser::parse::<String>(msg);
-            println!("{:?}", x);
         }
     }
 }

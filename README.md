@@ -21,8 +21,7 @@ Currently there is some parts of the code that already have a tag of "TODO:", so
 we are passing things that aren't needed because we used it different from the original crate, and I still didn't rewrote it, so yeah, that should 
 be rewritten
 * Look into the shit of [`TransformerSelector`] which should be deleted, it was some tests that i had made before
-
-* Remove by complete the tokio-tungsnite codes, and dependecies, moving the fast-websockets parts into their respective and better locations.
+* move the fast-websockets parts into their respective and better locations.
 * Clean placeholder code, unused deps, move things to their correct locations, add docs etc.
 
 * **Mid/high importance**: Start working on a better solution/ rewrite some parts of the private feed implementation 

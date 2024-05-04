@@ -48,7 +48,7 @@ where
     /// A [`ApiKey`] implementations that also implements [`Signer`]
     type Key: ApiKey + Send;
 
-    /// Base Url of the exchange being connected to.
+    /// Base [`Url`] of the exchange being connected to.
     fn url() -> Url;
 
     /// Defines how to translate a collection of [`PublicExchangeSub`]'s into the
@@ -90,6 +90,7 @@ where
 pub trait ExchangeServer: Default + std::fmt::Debug + Clone + Send {
     const ID: ExchangeId;
 
+    /// Base [`Url`] of the exchange being connected to.
     fn websocket_url() -> Url;
 }
 
