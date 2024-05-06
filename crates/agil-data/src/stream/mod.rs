@@ -8,6 +8,8 @@ use crate::{
 };
 use agil_integration::account::ApiKey;
 use tokio::sync::mpsc;
+
+/// Default message consumer function
 pub mod consume;
 
 use std::{future::Future, pin::Pin};
