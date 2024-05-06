@@ -1,4 +1,4 @@
-use agil_integration::{instrument::Instrument, websocket::WsMessage};
+use agil_integration::instrument::Instrument;
 
 pub mod trade;
 
@@ -62,13 +62,4 @@ where
     fn from((exchange, instrument, kind): (Exchange, I, Kind)) -> Self {
         Self::new(exchange, instrument, kind)
     }
-}
-
-/// Metadata generated from a collection of [`Subscription`]'s
-/// includes the exchange and the payload to be sent to the Exchange
-#[derive(Clone, Eq, PartialEq, Debug)]
-pub struct SubscriptionMeta {
-    pub subscription_map: Vec<Instrument>,
-    /// Collection of the WsMessage containing exchange specific subscription payload
-    pub subscriptions: Vec<WsMessage>,
 }

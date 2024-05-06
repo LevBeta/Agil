@@ -62,11 +62,7 @@ impl Subscriber for WebSocketSubscriber {
         // Connect to a exchange
         let mut websocket = connect(url).await;
 
-        //if api_key.is_some() {
-        //    let msg = Exchange::private_connect(api_key.unwrap());
-        //println!("{:?}", msg);
-        //    websocket.write_frame(msg).await.unwrap();
-        //}
+        // Only sends a connect payload if there is some [`ApiKey`]
         if api_key.is_some() {
             let msg = Exchange::private_connect(api_key.unwrap());
             websocket.write_frame(msg).await.unwrap();
