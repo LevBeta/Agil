@@ -13,7 +13,7 @@ impl BybitChannel {
     /// [`Bybit`] real-time public trades channel
     pub const TRADES: Self = Self("publicTrade");
 
-    /// [`Bybit`] real-time private position channel;
+    /// [`Bybit`] real-time private position channel
     pub const POSITIONS: Self = Self("positions");
 }
 

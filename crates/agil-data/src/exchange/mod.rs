@@ -13,6 +13,9 @@ use serde::de::DeserializeOwned;
 ///`Bybit` implementation
 pub mod bybit;
 
+///`Paradex` implementation
+pub mod paradex;
+
 /// Defines genetic [`ExchangeSub`] ([`PublicExchangeSub`][`PrivateExchangeSub`])
 /// used by the exchange [`Connector`] to to build [`FastWsMessage`] subscription payloads.
 pub mod subscription;
@@ -105,6 +108,7 @@ pub struct PingInterval {
 pub enum ExchangeId {
     BybitSpot,
     BybitFutures,
+    Paradex,
 }
 
 /// Defines the MarketStream associented with an exchange

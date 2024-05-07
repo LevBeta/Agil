@@ -8,6 +8,7 @@ use agil_integration::{
     account::ApiKey,
     websocket::{fastws::message::FastWebSocketParser, message::StreamParser},
 };
+use log::error;
 use tokio::sync::mpsc;
 
 /// Defualt starting reconnectiong backoff to the exchange
@@ -45,17 +46,16 @@ where
             }
         };
 
-        // This is retuning a tuple with a ws stream and a transformer, which we can use
-        // instead of the horrible way that is using rn, where we create it on the stream builder
-        // and pass it as a argument to here, which was made just to be a placeholder for some time
-        // let mut ws_stream = stream;
-
         // TODO: This should be re-done to make it better
         // Also isn't using any of errors returned, which is horrible
         while let Ok(msg) = stream.read_frame().await {
             let exchange_message = match FastWebSocketParser::parse::<Transformer::Input>(Ok(msg)) {
                 Some(Ok(exchange_message)) => exchange_message,
-                Some(Err(_)) => continue,
+                Some(Err(err)) => {
+                    println!("{:?}", err);
+                    //error!("Error deserializing: {:?}", err);
+                    continue;
+                }
                 None => continue,
             };
 

@@ -50,7 +50,7 @@ pub struct Bybit<Server> {
 }
 
 impl<Server: ExchangeServer> Connector for Bybit<Server> {
-    const ID: super::ExchangeId = super::ExchangeId::BybitSpot;
+    const ID: super::ExchangeId = Server::ID;
     type Channel = BybitChannel;
     type Market = BybitMarket;
     type Subscriber = WebSocketSubscriber;
