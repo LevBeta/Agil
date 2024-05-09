@@ -2,6 +2,8 @@ use agil_integration::instrument::Instrument;
 
 pub mod trade;
 
+pub mod book;
+
 pub mod position;
 
 /// Subsciptions to describe to a [`SubKind`] for a particular exchange

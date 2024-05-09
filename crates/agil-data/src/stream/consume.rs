@@ -52,8 +52,7 @@ where
             let exchange_message = match FastWebSocketParser::parse::<Transformer::Input>(Ok(msg)) {
                 Some(Ok(exchange_message)) => exchange_message,
                 Some(Err(err)) => {
-                    println!("{:?}", err);
-                    //error!("Error deserializing: {:?}", err);
+                    error!("Error deserializing: {:?}", err);
                     continue;
                 }
                 None => continue,

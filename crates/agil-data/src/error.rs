@@ -10,8 +10,6 @@ pub enum AgilDataError {
     WSERROR,
     #[error("Couldn't subscribe, validation timeout reached")]
     ValidationTimeout(std::time::Duration),
-    // This error should be changed, to support responding
-    // with the specifiec subscription that failed
     #[error("Failed subscription response")]
     FailedSubscription,
     #[error("Message out of sequence")]

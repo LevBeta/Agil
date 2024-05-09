@@ -22,7 +22,3 @@ pub struct MarketEvent<T> {
     pub exchange: ExchangeId,
     pub data: T,
 }
-
-pub enum DataKind {
-    Trade(PublicTrade),
-}
