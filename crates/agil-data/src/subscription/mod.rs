@@ -1,9 +1,15 @@
 use agil_integration::instrument::Instrument;
 
+/// Public Trades [`SubKind`]
 pub mod trade;
 
+/// Public OrderBook [`SubKind`]
 pub mod book;
 
+/// Public Funding [`SubKind`]
+pub mod funding;
+
+/// Private Position [`SubKind`]
 pub mod position;
 
 /// Subsciptions to describe to a [`SubKind`] for a particular exchange
